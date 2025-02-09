@@ -1,6 +1,12 @@
 clear
-code_name="P8740"
+
+if [ ! -d "./exe" ]; then
+    mkdir exe
+fi
+
+code_name="P5638"
 g++ $code_name.cpp -o exe/$code_name 
+
 
 for input_file in input/*; do
     if [ -f "$input_file" ]; then
@@ -9,3 +15,5 @@ for input_file in input/*; do
         exe/$code_name < "$input_file" | tee "$output_file"
     fi
 done
+
+# exe/$code_name
