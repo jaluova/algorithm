@@ -4,7 +4,7 @@ if [ ! -d "./exe" ]; then
     mkdir exe
 fi
 
-code_name="P8865"
+code_name="P10429"
 g++ $code_name.cpp -o exe/$code_name 
 
 
