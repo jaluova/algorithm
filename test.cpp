@@ -1,36 +1,31 @@
+#include <algorithm>
+#include <climits>
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-vector<int> toDigits(int x, int base) {
-    vector<int> digits;
-    for (; x; x /= base) {
-        int digit = x % base;
-        digits.push_back(digit);
-    }
-    return digits;
+struct TNode {
+    int val;
+    TNode *l;
+    TNode *r;
+    TNode(int x) : val(x), l(nullptr), r(nullptr) {}
+};
+
+bool isBST(TNode *root, long min, long max) {
+    if (!root) return true;
+    if (root->val <= min || root->val >= max) return false;
+    return isBST(root->l, min, root->val) && isBST(root->r, root->val, max);
 }
 
-int toDigit(vector<int> &digits, int base) {
-    int x = 0;
-
-    for (int i = digits.size() - 1; i >= 0; --i) {
-        x = x * base + digits[i];
-    }
-    return x;
-}
+bool isBST(TNode *root) { return isBST(root, LONG_MIN, LONG_MAX); }
 
 int main() {
-    vector<int> digits;
-    digits = toDigits(10, 8);
-    int digit = toDigit(digits, 8);
-
-    for (auto it = digits.rbegin(); it != digits.rend(); ++it) {
-        cout << *it;
-    }
-    cout << endl;
-    cout << digit << endl;
+    // 接受数据
+    TNode *root;
+    // 判断
+    bool ans = isBST(root);
+    std::cout << (ans ? "true" : "false") << std::endl;
 
     return 0;
 }
