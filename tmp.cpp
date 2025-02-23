@@ -2,8 +2,9 @@
 #include <iostream>
 using namespace std;
 int main() {
-  double a = 0.2;
-  cout << setprecision(2) << fixed << a;
+  int n;
+  cin >> n;
+  cout << n << '\n';
 
   return 0;
 }

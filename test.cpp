@@ -18,14 +18,12 @@ void benchmark(const string &name, const auto &func) {
 }
 
 int main() {
-  benchmark("aaa", []() { cout << "hello world!" << endl; });
-  vector<int> a = {1, 1, 4, 5, 1, 4};
+  vector<int> a = {1, 2, 3, 4};
 
-  ranges::sort(a, [](int a, int b) { return a < b; });
-
-  for (auto &x : a) cout << x << ' ';
-
-  cout << '\n';
+  do {
+    for (auto &x : a) cout << x << ' ';
+    cout << endl;
+  } while (next_permutation(a.begin(), a.end()));
 
   return 0;
 }
