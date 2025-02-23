@@ -4,8 +4,8 @@ if [ ! -d "./exe" ]; then
     mkdir exe
 fi
 
-code_name="lc300-1"
-g++ $code_name.cpp -o exe/$code_name 
+code_name="test"
+c++ $code_name.cpp -o exe/$code_name -O2 --std=c++20 -Wall
 
 
 for input_file in input/*; do
