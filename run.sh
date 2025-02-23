@@ -4,9 +4,9 @@ if [ ! -d "./exe" ]; then
     mkdir exe
 fi
 
-code_name="test"
-c++ $code_name.cpp -o exe/$code_name -O2 --std=c++20 -Wall
-
+code_name="tmp"
+# gcc $code_name.cpp -o exe/$code_name -O2 --std=c++20 -Wall
+c++ $code_name.cpp -o exe/$code_name -O2 --std=c++20
 
 for input_file in input/*; do
     if [ -f "$input_file" ]; then
