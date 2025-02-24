@@ -18,12 +18,9 @@ void benchmark(const string &name, const auto &func) {
 }
 
 int main() {
-  vector<int> a = {1, 2, 3, 4};
+  vector<int> a = {1, 1, 10, 20, 30, 200, 2, 1, 10, -5, -8};
 
-  do {
-    for (auto &x : a) cout << x << ' ';
-    cout << endl;
-  } while (next_permutation(a.begin(), a.end()));
+  cout << endl;
 
   return 0;
 }
