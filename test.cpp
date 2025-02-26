@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <chrono>
+#include <deque>
 #include <format>
 #include <iostream>
 #include <random>
@@ -18,9 +19,22 @@ void benchmark(const string &name, const auto &func) {
 }
 
 int main() {
-  vector<int> a = {1, 1, 10, 20, 30, 200, 2, 1, 10, -5, -8};
+  int n = 100000000;
+  deque<int> dq;
+  vector<int> v;
 
-  cout << endl;
+  benchmark("push_back", [&]() {
+    for (int i = 0; i < n; i++) dq.push_back(rnd());
+  });
+  benchmark("vector push_back", [&]() {
+    for (int i = 0; i < n; i++) v.push_back(rnd());
+  });
+  benchmark("access", [&]() {
+    for (int i = 0; i < n; i++) dq[i] = i;
+  });
+  benchmark("vector access", [&]() {
+    for (int i = 0; i < n; i++) v[i] = i;
+  });
 
   return 0;
 }
