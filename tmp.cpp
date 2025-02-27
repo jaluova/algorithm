@@ -1,31 +1,28 @@
-#include <climits>
+#include <algorithm>
 #include <iostream>
-#include <numeric>
 #include <vector>
 using namespace std;
 
 int main() {
-  long long offset = INT_MAX + 1;
   int n;
   cin >> n;
-  vector<int> d(offset * 2);
-  while (n--) {
-    int l, r;
-    cin >> l >> r;
-    l += offset;
-    r += offset;
-    d[l] += 1;
-    d[r] -= 1;
+  vector<int> l(n), r(n);
+
+  for (int i = 0; i < n; i++) {
+    cin >> l[i] >> r[i];
   }
 
-  partial_sum(d.begin(), d.end(), d.begin());
+  sort(l.begin(), l.end());
+  sort(r.begin(), r.end());
 
   int ans = 0;
 
-  for (auto &x : d)
-    if (x > 0) ans++;
+  for (int i = 0; i < n; i++) {
+    ans += r[i] - l[i];
+    if (i) ans -= max(r[i - 1] - l[i], 0);
+  }
 
-  cout << ans << endl;
+  cout << ans << '\n';
 
   return 0;
 }
