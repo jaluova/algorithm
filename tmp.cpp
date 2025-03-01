@@ -1,18 +1,27 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
-int main() {
-  int n;
-  cin >> n;
-  vector<int> a(n), b(n);
-
-  for (auto& x : a) cin >> x;
-  int m;
-  cin >> m;
-  for (int i = 0; i < n; i++) {
-    b[(i + m) % n] = a[i];
+bool isSecure(string s) {
+  // 长度判断
+  if (s.length() < 8 || s.length() > 16) return false;
+  if (s[0] < 'A' || s[0] > 'Z') return false;
+  int lower = 0, num = 0, special = 0;  // 小写字母 数字 特殊符号
+  for (auto c : s) {
+    if (c >= 'a' && c <= 'z') lower++;
+    if (c >= '0' && c <= '9') num++;
+    if (c == '~' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' ||
+        c == '*')
+      special++;
   }
-  for (auto x : b) cout << x << ' ';
-  cout << '\n';
+  if (lower == 0 || num == 0 || special == 0) return false;
+  return true;
+}
+
+int main() {
+  string s;
+  cin >> s;
+  if (isSecure(s))
+    cout << "true" << endl;
+  else
+    cout << "false" << endl;
 }

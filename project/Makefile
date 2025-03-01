@@ -7,14 +7,14 @@ objects = main.o bint.o
 sources = main.cpp bint.cpp
 
 all: $(targets)
-	@echo "all done"
 	@./$(targets)
+	@rm -f *.o bint
 
 $(targets): $(objects)
 	@c++ $(CFLAGS) main.o bint.o -o $@
 
 %.o: %.cpp
-	c++ $(CFLAGS) -c $< -o $@
+	@c++ $(CFLAGS) -c $< -o $@
 
 clean: 
-	@rm $(CFLAGS) -f *.o bint
+	@rm -f *.o bint

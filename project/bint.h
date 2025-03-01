@@ -9,8 +9,11 @@ class bint {
   std::vector<int> dig;  // low -> high
 
  public:
+  bool operator<(const bint& rhs);
+  bint operator-(const bint& rhs);
   bint& operator=(const std::string& rhs);
   bint operator+(const bint& rhs);
+  bint operator/(const bint& rhs);
   friend std::istream& operator>>(std::istream& lhs, bint& rhs);
   friend std::ostream& operator<<(std::ostream& lhs, const bint& rhs);
 };
