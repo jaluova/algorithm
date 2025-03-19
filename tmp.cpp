@@ -55,17 +55,6 @@ bint& bint::operator=(const std::string& rhs) {
   return *this;
 }
 
-// bint& bint::operator=(const bint& rhs) {
-//   if (dig.size()) dig.clear();
-//   size = rhs.size;
-//   dig.resize(size);
-//   for (int i = 0; i < size; i++) {
-//     dig[i] = rhs.dig[i];
-//   }
-//   // dig = rhs.dig;
-//   return *this;
-// }
-
 bint bint::operator+(const bint& rhs) {
   bint ret;
   ret.size = std::max(rhs.size, size) + 1;
