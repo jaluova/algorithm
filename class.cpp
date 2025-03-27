@@ -1,43 +1,37 @@
 #include <iostream>
+
 using namespace std;
 
-class A {
- public:
-  A(int aa) {
-    cout << "A的构造函数被执行" << endl;
-    this->a = aa;
-  }
-  ~A() { cout << "A类析构函数被执行" << endl; }
+class Rect {
+ protected:
+  float width, length, area;
 
- private:
-  int a;
+ public:
+  Rect() { width = length = area = 0.0f; }
+  Rect(float w, float l) : width(w), length(l), area(w * l) {}
+  virtual float getArea() { return area; }
+  float getLen() { return length; }
+  float getWidth() { return width; }
 };
 
-class B {
- public:
-  B(int bb) {
-    cout << "B类构造函数被执行" << endl;
-    this->b = bb;
-  }
-  ~B() { cout << "B类析构函数被执行" << endl; }
-
+class Cube : public Rect {
  private:
-  int b;
-};
+  float height;
 
-class C : public A {
  public:
-  C(int aa, int bb, int cc) : A(aa), br(bb) {
-    cout << "派生类构造函数被执行" << endl;
+  Cube() : Rect() { height = 0.0f; }
+  Cube(float w, float l, float h) : Rect(w, l), height(h) {}
+  float getArea() {
+    return 2 * (height * width + width * length + length * height);
   }
-  ~C() { cout << "C类析构函数被执行" << endl; }
-
- private:
-  B br;
-  int c;
 };
 
 int main() {
-  C cc(1, 2, 3);
-  return 0;
+  Rect rect(3.0f, 4.0f);
+  cout << "Rectangle Area: " << rect.getArea() << endl;
+
+  Cube cube(3.0f, 4.0f, 5.0f);
+
+  Rect* rectPtr = &cube;
+  cout << "Cube Surface Area: " << rectPtr->getArea() << endl;
 }

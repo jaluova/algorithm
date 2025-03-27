@@ -52,7 +52,7 @@ if ($exitCode -ne 0) {
 if ($gccOutput -match "warning:") {
   Write-Log "上述是警告信息，请检查（如在预期内则可忽略）" Yellow
 }
-Write-Log "编译成功，开始执行(按 CTRL+c 可强制终止正在执行的程序)" Green
+# Write-Log "编译成功，开始执行(按 CTRL+c 可强制终止正在执行的程序)" Green
 
 if ($inputFileName) {
   if (-not(Test-Path $inputFileName)) {
@@ -69,6 +69,6 @@ if ($inputFileName) {
 else {
   & "./$fileName.exe"
 }
-Write-Log "执行结束，删除可执行程序" Green
+# Write-Log "执行结束，删除可执行程序" Green
 
 Remove-Item "./$fileName.exe"
